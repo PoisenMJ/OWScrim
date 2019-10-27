@@ -1,0 +1,23 @@
+.first{
+  background-color: rgb(20,20,20);
+  height: 100%;
+  width: 100%;
+  display: grid;
+  align-items: center;
+}
+
+.first-contents{ margin: 0 auto; }
+
+.main-title{
+    letter-spacing: 0.7rem;
+}
+
+.secondary-title{
+    letter-spacing: 0.9rem;
+}
+
+hr{
+    display: block;
+    border: 3px solid;
+    border-radius: 3px;
+}

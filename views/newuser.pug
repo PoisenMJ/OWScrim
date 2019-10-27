@@ -1,0 +1,77 @@
+extends layout
+
+block header
+    link(rel='stylesheet' href='/stylesheets/newuser.css')
+
+block content
+    .main
+        .first
+            .first-contents
+                h1.display-3.text-light Player Information
+                form(action='/users/new' method='post')
+                    .form-row
+                        .col-4
+                        .col-4
+                            label.text-light.col-sm-2.col-form-label.col-form-label-sm(for='battletag' style='max-width: 100%;') BattleTag
+                            input.form-control(id='battletag' name='battletag' type='string' readonly value=battletag)
+                        .col-4
+                    .form-row
+                        .col
+                            label.text-muted.col-form-label.col-form-label-sm(for='tankSR') Tank SR
+                            input.form-control(type='number' name='tankSR' id='tankSR' value=tankSR required=true min='0' max='5000')
+                        .col
+                            label.text-muted.col-form-label.col-form-label-sm(for='dpsSR') Damage SR
+                            input.form-control(type='number' name='dpsSR' id='dpsSR' value=dpsSR required=true min='0' max='5000')
+                        .col
+                            label.text-muted.col-form-label-sm.col-form-label(for='supportSR') Support SR
+                            input.form-control(type='number' name='supportSR' id='supportSR' value=supportSR required=true min='0' max='5000')
+                    .row.mb-3
+                        .col
+                        .col
+                            span.text-light.col-form-label.col-form-label-lg Display Rank
+                        .col
+                    .row
+                        .ranks
+                            img#bronze-rank.rank-image(src='/images/bronze.png')
+                            img#silver-rank.rank-image(src='/images/silver.png')
+                            img#gold-rank.rank-image(src='/images/gold.png')
+                            img#plat-rank.rank-image(src='/images/plat.png')
+                            img#diamond-rank.rank-image(src='/images/diamond.png')
+                            img#masters-rank.rank-image(src='/images/masters.png')
+                            img#grandmaster-rank.rank-image(src='/images/grandmaster.png')
+                            img#top500-rank.rank-image(src='/images/top500.png')
+                            //input.w-100.custom-range(type='range' min='0' max='5000') 
+                            select(name='rankselect' id='rankselect' hidden)
+                                option(value='bronze-rank')
+                                option(value='silver-rank')
+                                option(value='gold-rank')
+                                option(value='plat-rank')
+                                option(value='diamond-rank')
+                                option(value='masters-rank')
+                                option(value='grandmaster-rank')
+                                option(value='top500-rank')
+                    .form-row
+                        .col
+                        .col
+                            button.btn.btn-outline-secondary(type='submit') Save
+                        .col
+
+    script.
+        $('#'+$('#rankselect').val()).css('backgroundColor', 'rgb(45, 45, 65)');
+
+        $('.rank-image').hover(function(){
+            $(this).css('backgroundColor', 'rgb(45, 45, 65)');
+            $(this).css('cursor', 'pointer');
+        });
+        $('.rank-image').mouseleave(function(){
+            if($('#rankselect').val() != $(this).attr('id')){
+                $(this).css('backgroundColor', 'rgb(59, 59, 78)');
+            }
+            $(this).css('cursor', 'cursor');
+        });
+
+        $('.rank-image').click(function(){
+            $('.rank-image').css('backgroundColor', 'rgb(59,59,78)');
+            $(this).css('backgroundColor', 'rgb(45, 45, 65)');
+            $('#rankselect').val($(this).attr('id')).prop('selected', true);
+        });
