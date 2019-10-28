@@ -6,3 +6,26 @@ block header
 block content
     .main
         .first
+            .first-contents
+                h1.display-3.text-light.mb-5 Profile
+                .form-row.name-group
+                    img.player-icon(src=playerIcon)
+                    input.form-control(id='battletag' name='battletag' type='string' disabled value=battletag)
+                .form-row
+                    .col
+                        label.text-muted.col-form-label.col-form-label-sm(for='tankSR') Tank SR
+                        input.form-control(type='string' name='tankSR' id='tankSR' value=tankSR disabled)
+                    .col
+                        label.text-muted.col-form-label.col-form-label-sm(for='dpsSR') Damage SR
+                        input.form-control(type='string' name='dpsSR' id='dpsSR' value=dpsSR disabled)
+                    .col
+                        label.text-muted.col-form-label-sm.col-form-label(for='supportSR') Support SR
+                        input.form-control(type='string' name='supportSR' id='supportSR' value=supportSR disabled)
+                .form-row.mt-4
+                    .col-4
+                    .col-4
+                        h3.dislay-4.text-light Display Rank
+                        img.w-100(src=displayRank)
+                    .col-4
+
+

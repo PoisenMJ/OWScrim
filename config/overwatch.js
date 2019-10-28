@@ -15,7 +15,9 @@ function getSR(battletag){
                 dpsSR = json.competitive.damage.rank;
                 supportSR = json.competitive.support.rank;
                 averageSR = (tankSR + dpsSR + supportSR) / 3;
-                resolve([tankSR, dpsSR, supportSR]);
+                playerIcon = json.portrait;
+                playerLevel = json.level;
+                resolve([tankSR, dpsSR, supportSR, playerIcon, playerLevel]);
             }
             resolve(false);
         })

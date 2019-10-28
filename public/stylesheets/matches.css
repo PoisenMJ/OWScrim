@@ -1,0 +1,17 @@
+.first{ 
+    align-items: initial!important; 
+    padding-top: 1rem;
+}
+
+.create-match {
+    bottom: 5%;
+    left: 5%;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    font-size: 4rem;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-bottom: 1rem;
+    color: white;
+} 

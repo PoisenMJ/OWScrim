@@ -12,6 +12,7 @@ var keys = require('./config/keys');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
+var matchRouter = require('./routes/matches');
 
 var app = express();
 
@@ -39,7 +40,7 @@ mongoose.connect(keys.mongodb.uri, { useNewUrlParser: true }, () => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
-
+app.use('/matches', matchRouter);
 
 //
 // WHEN TYPING IN SR MANUALLY ADD GLYPH ICON LIKE FONT AWESOME NEXT TO SR

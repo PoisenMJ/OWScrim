@@ -15,3 +15,13 @@ a:hover{ text-decoration: none;}
   display: block;
   text-align: center;
 }
+
+.first{
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: rgb(30, 30, 40);
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}

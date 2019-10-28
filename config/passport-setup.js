@@ -14,18 +14,10 @@ passport.use(new bnetStrategy({
     // Check if user already exists
     User.findOne({ battletag: profile.battletag }).then((user) => {
         if(user){
-            console.log('User exists: ' + user);
             done(null, user);
         }
         else{
-            new User({ 
-              battletag: profile.battletag,
-              displayRank: 'bronze-rank',
-              tankSR: 0,
-              dpsSR: 0,
-              supportSR: 0
-            }).save().then((newUser) => {
-                console.log('Created new user: ' + newUser);
+            new User({ battletag: profile.battletag }).save().then((newUser) => {
                 done(null, newUser);
             });
         }

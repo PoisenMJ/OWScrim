@@ -10,7 +10,7 @@ html
     link(rel='stylesheet', href='/stylesheets/layout.css')
   body
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-      a.navbar-brand(href='#') Scrims
+      a.navbar-brand(href='/') Scrims
       button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarText' aria-controls='navbarText' aria-expanded='false' aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarText.collapse.navbar-collapse
@@ -20,9 +20,12 @@ html
               | Home 
               span.sr-only (current)
           li.nav-item
-            a.nav-link(href='/info') Info
+            a.nav-link(href='/matches') Matches
           li.nav-item
-            a.nav-link(href='#') Pricing
-        button.btn.btn-sm.btn-outline-secondary 
-          a(href='/auth/bnet') Login
+            a.nav-link(href='/tos') TOS
+        if !loggedIn
+          button.btn.btn-sm.btn-outline-secondary 
+            a(href='/auth/bnet') Login
+        else
+          a.btn.btn-outline-secondary.text-light(href='/users/profile') #{battletag}
     block content

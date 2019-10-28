@@ -6,7 +6,8 @@ const userSchema = new Schema({
     displayRank: String,
     tankSR: Number,
     dpsSR: Number,
-    supportSR: Number
+    supportSR: Number,
+    profileImage: String
 });
 
 const User = mongoose.model('user', userSchema);

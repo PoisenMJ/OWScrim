@@ -1,0 +1,15 @@
+extends layout
+
+block header
+    link(rel='stylesheet' href='/stylesheets/matches.css')
+
+block content
+    .main
+        a.create-match.btn.btn-secondary(href='/matches/create') +
+        .first
+            if matches
+                each match in matches
+                    p.text-light Match created by #{match.creator}
+            else
+                h1.text-light.display-4 No Matches Available Right Now
+        

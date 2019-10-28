@@ -11,11 +11,11 @@ passport.authenticate('bnet', { failureRedirect: '/' }),
 (req, res) => {
     if(req.user){
         User.findOne({ battletag: req.user.battletag }).then((user) =>{
-            if(!user.rank){
+            if(!user.displayRank){
                 res.redirect('/users/new')
             }
             else{
-                res.redirect('/');
+                res.redirect('/users/profile');
             }
         }).catch((err) => { console.log(err); });
     }
