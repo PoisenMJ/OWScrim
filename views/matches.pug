@@ -9,7 +9,19 @@ block content
         .first
             if matches
                 each match in matches
-                    p.text-light Match created by #{match.creator}
+                    .match-div.mb-4
+                        img.map-image(src=match.mapURL)
+                        div(onclick=`window.location.href='/matches/${match._id}'`)
+                            p.text-muted.mb-1 #{match.creator}
+                            p.text-light.mb-0 Spots Left: #{match.positionsLeft}
+                            img.rank-required(src=match.rankURL)
             else
                 h1.text-light.display-4 No Matches Available Right Now
-        
+    
+    script.
+        $('.match-div').hover(function(){
+            $(this).css('background-color', 'rgb(75,75,75)');
+        });
+        $('.match-div').mouseleave(function(){
+            $(this).css('background-color', 'rgba(0,0,0,0)');
+        });

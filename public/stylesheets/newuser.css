@@ -26,6 +26,7 @@ h1{ margin-bottom: 2rem; }
     width: 80vw;
     padding-left: 3rem;
     padding-right: 3rem;
+    justify-items: center!important;
 }
 .rank-image{ 
     width: 100%; 

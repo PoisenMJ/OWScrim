@@ -15,6 +15,10 @@ passport.authenticate('bnet', { failureRedirect: '/' }),
                 res.redirect('/users/new')
             }
             else{
+                req.user.displayRank = user.displayRank;
+                req.user.tankSR = user.tankSR;
+                req.user.dpsSR = user.dpsSR;
+                req.user.supportSR = user.supportSR;
                 res.redirect('/users/profile');
             }
         }).catch((err) => { console.log(err); });

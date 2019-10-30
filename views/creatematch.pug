@@ -6,4 +6,73 @@ block header
 block content
     .main
         .first
-            p.text-muted create a match
+            .first-contents
+                h1.display-3.text-light.mb-4 #{name}'s Match
+                form(action='/matches/create' method='post')
+                    .form-row
+                        .maps-div
+                            span.map-title.text-light.col-form-label-lg Map
+                            img.map-image#blizzard-world(src='/images/maps/blizzard_world.jpg')
+                            img.map-image#busan(src='/images/maps/busan.jpg')
+                            img.map-image#dorado(src='/images/maps/dorado.jpg')
+                            img.map-image#eichenwalde(src='/images/maps/eichenwalde.png')
+                            img.map-image#gibraltar(src='/images/maps/gibraltar.jpg')
+                            img.map-image#hanamura(src='/images/maps/hanamura.jpg')
+                            img.map-image#havana(src='/images/maps/havana.png')
+                            img.map-image#hollywood(src='/images/maps/hollywood.jpg')
+                            img.map-image#horizon-lunar-colony(src='/images/maps/horizon_lunar_colony.jpg')
+                            img.map-image#illios(src='/images/maps/illios.jpg')
+                            img.map-image#junkertown(src='/images/maps/junkertown.jpg')
+                            img.map-image#kings-row(src='/images/maps/kings_row.jpg')
+                            img.map-image#lijiang(src='/images/maps/lijiang.jpg')
+                            img.map-image#nepal(src='/images/maps/nepal.jpg')
+                            img.map-image#numbani(src='/images/maps/numbani.jpg')
+                            img.map-image#oasis(src='/images/maps/oasis.jpg')
+                            img.map-image#paris(src='/images/maps/paris.jpg')
+                            img.map-image#rialto(src='/images/maps/rialto.jpg')
+                            img.map-image#route-66(src='/images/maps/route_66.jpg')
+                            img.map-image#temple-of-anubis(src='/images/maps/temple_of_anubis.jpg')
+                            img.map-image#volskaya(src='/images/maps/volskaya.jpg')
+                            select(name='mapselect' id='mapselect' hidden)
+                                option(value='blizzard-world')
+                                option(value='busan')
+                                option(value='dorado')
+                                option(value='eichenwalde')
+                                option(value='gibraltar')
+                                option(value='hanamura')
+                                option(value='havana')
+                                option(value='hollywood')
+                                option(value='horizon-lunar-colony')
+                                option(value='illios')
+                                option(value='junkertown')
+                                option(value='kings-row')
+                                option(value='lijiang')
+                                option(value='nepal')
+                                option(value='numbani')
+                                option(value='oasis')
+                                option(value='paris')
+                                option(value='rialto')
+                                option(value='route-66')
+                                option(value='temple-of-anubis')
+                                option(value='volskaya')
+                    .form-row.mt-4
+                        .details-div
+                            span.details-title.text-light.col-form-label-lg Role
+                            span.match-rank-title.text-light.col-form-label-lg Match Rank
+                            img.match-rank(src='/images/bronze.png')
+                            input#match-rank(type='string' name='matchrank' hidden)
+                            .role-div
+                                img#tank.role-image(src='/images/roles/tank.png' onclick=`chooseRole(${tankSR}, this)`)
+                                img#dps.role-image(src='/images/roles/damage.png' onclick=`chooseRole(${dpsSR}, this)`)
+                                img#support.role-image(src='/images/roles/support.png' onclick=`chooseRole(${supportSR}, this)`)
+                                select(name='roleselect' id='roleselect' hidden)
+                                    option(value='tank')
+                                    option(value='dps')
+                                    option(value='support')
+                            button.submit-button.btn.btn-lg.btn-outline-secondary(type='submit') Create
+
+                    p#tankSR(style='display:none;') #{tankSR}
+                    p#dpsSR(style='display:none;') #{dpsSR}
+                    p#supportSR(style='display:none;') #{supportSR}
+
+    script(src='/javascripts/creatematch.js')

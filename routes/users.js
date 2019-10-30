@@ -39,6 +39,10 @@ router.post('/new', (req, res) => {
   displayRank = req.body.rankselect;
   battletag = req.body.battletag; 
   profileImage = req.user.playerIcon;
+
+  req.user.tankSR = tankSR;
+  req.user.dpsSR = dpsSR;
+  req.user.supportSR = supportSR;
   // { tankSR, dpsSR, supportSR } = req.body;
   console.log(req.user.playerIcon);
   User.updateOne({ battletag }, 
