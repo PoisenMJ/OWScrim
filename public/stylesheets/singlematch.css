@@ -1,0 +1,65 @@
+.first{ 
+    grid-template-columns: 3fr 5fr;
+    grid-template-rows: 1fr;
+    height: auto!important;
+}
+
+.game-details{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr 8fr;
+    grid-template-areas:
+    "match-title match-title"
+    "team-one team-two"
+    "players players"
+    "join leave";
+    width: auto;
+    margin-top: 1rem;
+    margin-right: 3rem;
+}
+.match-title{ grid-area: match-title; align-self: end;}
+.team-one-title{ grid-area: team-one; align-self: end; }
+.team-two-title{ grid-area: team-two; align-self: end; }
+.players{ 
+    grid-area: players; 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    "t1p1 t2p1"
+    "t1p2 t2p2"
+    "t1p3 t2p3"
+    "t1p4 t2p4"
+    "t1p5 t2p5"
+    "t1p6 t2p6";
+}
+.t1p1{ grid-area: t1p1; } 
+.t2p1{ grid-area: t2p1; }
+.t1p2{ grid-area: t1p2; }
+.t2p2{ grid-area: t2p2; }
+.t1p3{ grid-area: t1p3; }
+.t2p3{ grid-area: t2p3; }
+.t1p4{ grid-area: t1p4; }
+.t2p4{ grid-area: t2p4; }
+.t1p5{ grid-area: t1p5; }
+.t2p5{ grid-area: t2p5; }
+.t1p6{ grid-area: t1p6; }
+.t2p6{ grid-area: t2p6; }
+
+.player-div{ 
+    border: 1px solid grey;
+}
+
+.player-info{
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: 1fr;
+    padding: 1rem;
+}
+.player-info-details{
+    place-self: center;
+}
+.player-info-image{
+    place-self: center;
+    width: 30%;
+}

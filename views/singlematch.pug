@@ -1,0 +1,40 @@
+extends layout
+block header
+    link(rel='stylesheet' href='/stylesheets/singlematch.css')
+
+block content
+    .main
+        .first
+            .empty-div-for-now
+            .game-details
+                h1.display-5.text-light.match-title #{battletag}'s Game
+                h6.text-muted.team-one-title Team 1
+                h6.text-muted.team-two-title Team 2
+                each player in match.players
+                    .player-info
+                        img.player-info-image(src=player.roleURL)
+                        .player-info-details
+                            p.text-muted.mb-0 #{player.SR}
+                            p.text-light #{player.battletag}
+                .players
+                    .t1p1.player-div
+                    .t2p1.player-div
+                    .t1p2.player-div
+                    .t2p2.player-div
+                    .t1p3.player-div
+                    .t2p3.player-div
+                    .t1p4.player-div
+                    .t2p4.player-div
+                    .t1p5.player-div
+                    .t2p5.player-div
+                    .t1p6.player-div
+                    .t2p6.player-div
+
+    script.
+        $('.players').children().each(function(){
+            if($(this).children().length == 0){
+                var elem = $('.player-info').detach();
+                $(this).append(elem);
+                return false;
+            } 
+        });

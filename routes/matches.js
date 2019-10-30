@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var Match = require('../models/match_model');
-var Player = require('../models/player_model');
 var keys = require('../config/keys');
 
 const authCheck = (req, res, next) => {
@@ -37,17 +36,17 @@ router.post('/create', authCheck, (req, res) => {
     var role = req.body.roleselect;
     var matchRank = req.body.matchrank;
     var map = req.body.mapselect;
-    
-    var player = new Player({
-        battletag: req.user.battletag,
-        SR: req.user.tankSR, // BUG: THIS NEEDS CHANGING
-        role: role,
-        team: 'Team 1'
-    });
+    var sr = (role == 'tank') ? req.user.tankSR : (role == 'dps') ? req.user.dpsSR : req.user.supportSR;
+
     var match = new Match({
         creator: req.user.battletag,
         rankRequired: matchRank,
-        players: [player],
+        players: {
+            battletag: req.user.battletag,
+            SR: sr,
+            role: role,
+            team: 'Team 1'
+        },
         map: map
     }).save((err, doc) => {
         res.redirect('/matches');
@@ -55,20 +54,12 @@ router.post('/create', authCheck, (req, res) => {
 });
 
 router.get('/:id', authCheck, (req, res) => {
-    res.send('Match');
+    Match.findOne({ _id: req.params.id }, (err, match) => {
+        for(var i in match.players){
+            match.players[i].roleURL = keys.roles.roleToImage[match.players[i].role];
+        }
+        res.render('singlematch', { match, battletag: req.user.battletag ,loggedIn: true });
+    });
 });
-
-
-//
-//
-// LOOK AT HOW I HANDLED CLICKING DIV TO GO TO MATCH AND USE THAT TO CHANGE HOW I IMPLEMENT CREATE MATCH
-// 
-//
-//
-
-
-
-
-
 
 module.exports = router;

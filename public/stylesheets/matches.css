@@ -1,7 +1,12 @@
 .first{ 
-    align-items: initial!important; 
     padding-top: 1rem;
     height: auto!important;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    /*min-height: 95vh;*/
+    margin-left: 10rem;
+    margin-right: 10rem;
+    width: auto!important;
 }
 
 .create-match {
@@ -23,9 +28,9 @@
     grid-template-rows: 1fr;
     grid-template-columns: 3fr 2fr;
     grid-column-gap: 1rem;
-    box-sizing: border-box;
-    width: 40%;
+    width: 95%;
     place-self: center;
+    align-self: start;
     border: 1px solid gray;
     padding: 1rem;
     border-radius: 1rem;
