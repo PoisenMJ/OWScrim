@@ -3,6 +3,7 @@ var router = express.Router();
 
 var Match = require('../models/match_model');
 var keys = require('../config/keys');
+var rankCheck = require('../public/javascripts/sr');
 
 const authCheck = (req, res, next) => {
     if(!req.user) res.redirect('/');
@@ -45,6 +46,7 @@ router.post('/create', authCheck, (req, res) => {
             battletag: req.user.battletag,
             SR: sr,
             role: role,
+            iconURL: req.user.profileImage,
             team: 'Team 1'
         },
         map: map
@@ -55,11 +57,51 @@ router.post('/create', authCheck, (req, res) => {
 
 router.get('/:id', authCheck, (req, res) => {
     Match.findOne({ _id: req.params.id }, (err, match) => {
+        var inMatch = false;
         for(var i in match.players){
             match.players[i].roleURL = keys.roles.roleToImage[match.players[i].role];
+            if(match.players[i].battletag == req.user.battletag) inMatch = true;
         }
-        res.render('singlematch', { match, battletag: req.user.battletag ,loggedIn: true });
+        match.mapURL = '/images/maps/' + keys.maps.mapToImage[match.map];
+        var tankRank = rankCheck(req.user.tankSR);
+        var dpsRank = rankCheck(req.user.dpsSR);
+        var supportRank = rankCheck(req.user.supportSR);
+
+        res.render('singlematch', { 
+            inMatch,
+            tankRank, 
+            dpsRank, 
+            supportRank, 
+            match, 
+            battletag: req.user.battletag, 
+            loggedIn: true 
+        });
     });
+});
+
+router.get('/:id/join/:role', authCheck, (req, res) => {
+    Match.findOne({ _id: req.params._id }, (err, match) => {
+        for(var i in match.players){
+            // Check if the player is already in the match
+            //if(match.players[i].battletag == req.user.battletag){
+            //    res.redirect(`/matches/${req.params._id}`);
+            //}
+            //else{
+
+
+                Match.updateOne({ _id: req.params._id },
+                    { $set: { players: {
+                        battletag: req.user.battletag,
+                        SR: 0
+                    }}} )
+            //}
+        }
+    });
+    res.send('joined');
+});
+
+router.get('/:id/leave', authCheck, (req, res) => {
+    res.send('left');
 });
 
 module.exports = router;

@@ -6,6 +6,7 @@ const player = new Schema({
     SR: { type: Number, min: 0, max: 5000, required: true },
     role: { type: String, required: true },
     team: { type: String, required: true },
+    iconURL: { type: String, required: true },
     ready: { type: Boolean, default: false }
 });
 

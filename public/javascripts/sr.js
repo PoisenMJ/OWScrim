@@ -1,9 +1,16 @@
 var keys = require('../../config/keys');
 
 const rankCheck = (sr) => {
-    Object.keys(keys.ranks.srToRank).forEach((key) => {
-        if(sr >= key) return keys.ranks.srToRank[keys];
-    })
+    var lowest = Number.MAX_VALUE;
+    var k = Object.keys(keys.ranks.srToRank);
+    var index = 0;
+    for(var i = 0; i < k.length; i++){
+        if((sr - k[i]) > 0 && (sr - k[i]) < lowest) {
+            lowest = (sr - k[i]);
+            index = i;
+        }
+    };
+    return keys.ranks.srToRank[k[index]];
 };
 
 const rankToImage = (rank) => {
@@ -15,4 +22,4 @@ const srToImage = (sr) => {
     return rankToImage(rank);
 }
 
-//module.exports = srToImage;
+module.exports = rankCheck;

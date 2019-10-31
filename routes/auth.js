@@ -19,6 +19,7 @@ passport.authenticate('bnet', { failureRedirect: '/' }),
                 req.user.tankSR = user.tankSR;
                 req.user.dpsSR = user.dpsSR;
                 req.user.supportSR = user.supportSR;
+                req.user.profileImage = user.profileImage;
                 res.redirect('/users/profile');
             }
         }).catch((err) => { console.log(err); });

@@ -3,16 +3,39 @@ block header
     link(rel='stylesheet' href='/stylesheets/singlematch.css')
 
 block content
+
+
+    #joinMatch
+        #modalBackground
+        #modal
+            h5#joinMatchTitle.text-muted Choose Role
+            .chooseRole
+                if match.rankRequired == tankRank
+                    img.role-image-enabled(src='/images/roles/tank.png' onclick=`window.location.href='/matches/${match._id}/join/tank'`)
+                else
+                    img.role-image-disabled(src='/images/roles/tank.png')
+                if match.rankRequired == dpsRank
+                    img.role-image-enabled(src='/images/roles/damage.png' onclick=`window.location.href='/matches/${match._id}/join/dps'`)
+                else 
+                    img.role-image-disabled(src='/images/roles/damage.png')
+                if match.rankRequired == supportRank
+                    img.role-image-enabled(src='/images/roles/support.png' onclick=`window.location.href='/matches/${match._id}/join/support'`)
+                else
+                    img.role-image-disabled(src='/images/roles/support.png')
+
     .main
         .first
-            .empty-div-for-now
+            .map-details
+                img(src=match.mapURL)
             .game-details
                 h1.display-5.text-light.match-title #{battletag}'s Game
                 h6.text-muted.team-one-title Team 1
                 h6.text-muted.team-two-title Team 2
                 each player in match.players
                     .player-info
-                        img.player-info-image(src=player.roleURL)
+                        .player-images
+                            img.player-info-role(src=player.roleURL)
+                            img.player-info-image(src=player.iconURL)
                         .player-info-details
                             p.text-muted.mb-0 #{player.SR}
                             p.text-light #{player.battletag}
@@ -29,6 +52,12 @@ block content
                     .t2p5.player-div
                     .t1p6.player-div
                     .t2p6.player-div
+                if !inMatch
+                    button#joinMatchButton.match-buttons.btn.btn-outline-info(disabled) Join
+                    a.match-buttons.btn.btn-outline-danger.disabled Leave
+                else
+                    button#joinMatchButton.match-buttons.btn.btn-outline-info.disabled Join Match
+                    a.match-buttons.btn.btn-outline-danger(href=`/matches/${match._id}/leave`) Leave
 
     script.
         $('.players').children().each(function(){
@@ -38,3 +67,16 @@ block content
                 return false;
             } 
         });
+        $('#joinMatchButton').click(function(){
+            if(!$(this).attr('disabled', true)) $('#joinMatch').css('display', 'grid');
+        });
+        $('.role-image-enabled').hover(function(){
+            $(this).css('filter', 'opacity(0.5)');
+        });
+        $('.role-image-enabled').mouseleave(function(){
+            $(this).css('filter', 'opacity(0.2)');
+        });
+        $('.role-image-enabled').click(function(){
+            window.location.href=`/matches/${match._id}/join/` + $(this).attr('id');
+        })
+        $('#modalBackground').click(function(){ $('#joinMatch').css('display', 'none')});

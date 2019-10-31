@@ -19,7 +19,6 @@ function srToRank(sr){
             index = i;
         }
     };
-    console.log(index);
     return srToRankDict[keys[index]];
 }
 
